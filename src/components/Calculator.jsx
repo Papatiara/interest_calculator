@@ -10,9 +10,9 @@ import * as actions from '../redux/actionTypes';
 
 const Calculator = () => {
 
-    const [amount, setAmount] = useState();
-    const [interest, setInterest] = useState();
-    const [years, setYears] = useState();
+    const [amount, setAmount] = useState(0);
+    const [interest, setInterest] = useState(0);
+    const [years, setYears] = useState(0);
     const [requiredMessage, setRequiredMessage] = useState("");
 
 
@@ -39,8 +39,13 @@ const Calculator = () => {
     }
 
     const clearValues = () => {
-        setRequiredMessage("");
         document.getElementById("form").reset();
+
+        setRequiredMessage("");
+        setAmount(0);
+        setInterest(0);
+        setYears(0);
+
         dispatch({
             type: actions.CLEAR_FORM,
             payload: {}

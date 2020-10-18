@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import store from '../redux/store';
 
 import './calculator.css'
 
@@ -17,7 +18,7 @@ const Calculator = () => {
 
 
     const total = useSelector((state) => state);
-
+console.log(store.getState(), total)
     const dispatch = useDispatch();
 
 

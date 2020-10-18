@@ -2,7 +2,6 @@ import * as actions from './actionTypes'
 
 
 const reducer = (state = 0, action) => {
-    console.log(action)
     switch (action.type) {
         case actions.TOTAL_ASKED:
             let result = action.payload.amount * (1 + (action.payload.rate * action.payload.years));

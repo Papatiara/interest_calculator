@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import store from '../redux/store';
 
 import './calculator.css'
 
@@ -18,7 +17,6 @@ const Calculator = () => {
 
 
     const total = useSelector((state) => state);
-console.log(store.getState(), total)
     const dispatch = useDispatch();
 
 
@@ -33,7 +31,7 @@ console.log(store.getState(), total)
                 payload: {
                     amount: amount,
                     years: years,
-                    rate: interest
+                    interest: interest
                 }
             });
         }
@@ -62,15 +60,22 @@ console.log(store.getState(), total)
                 <form id="form">
                     <span>
                         <label htmlFor="amount">Amount: </label>
-                        <input onChange={(e) => setAmount(e.target.value)} required="required" pattern="[0-9]" type="text" placeholder="$"></input>
+                        <input onChange={(e) => setAmount(e.target.value)}
+                            required="required" pattern="[0-9]" type="number" placeholder="$"
+                        ></input>
                     </span>
                     <span>
                         <label htmlFor="interest">Interest: </label>
-                        <input onChange={(e) => setInterest(e.target.value)} required="required" pattern="[0-9]" type="text" placeholder="%"></input>
+                        <input onChange={(e) => setInterest(e.target.value)}
+                            required="required" pattern="[0-9]" type="number"  placeholder="%">
+                        </input>
                     </span>
                     <span>
                         <label htmlFor="years">Years: </label>
-                        <input onChange={(e) => setYears(e.target.value)} required="required" pattern="[0-9]" type="number" placeholder=""></input>
+                        <input onChange={(e) => setYears(e.target.value)}
+                            required="required" pattern="[0-9]" type="number"
+                            placeholder="">
+                        </input>
                     </span>
                     <p>{requiredMessage}</p>
                 </form>

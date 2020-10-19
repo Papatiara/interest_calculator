@@ -5,12 +5,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  width: 100%;
   display: flex;
-
 }
 body, html * {
   box-sizing: border-box;
+}
+
+*{
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
 }
 
 code {

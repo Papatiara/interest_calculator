@@ -166,7 +166,9 @@ describe('Memory leaking test action TOTAL_ASKED followed by CLEAN_FORM action '
     });
 
 
-    await store.dispatch(testingValue1) && store.dispatch(testingValue2) && store.dispatch(testingValue3);
+    await store.dispatch(testingValue1);
+    await store.dispatch(testingValue2);
+    await store.dispatch(testingValue3);
 
 
     wrapper.update();

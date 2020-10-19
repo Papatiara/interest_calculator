@@ -1,7 +1,6 @@
 .App {
   min-height: 100vh;
   min-width: 100vw;
-  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -12,6 +11,8 @@
   width: 100%;
   color: #1F446F;
   font-family: "Tiempos",serif;
+  overflow: scroll;
+
 }
 
 .App h3 {

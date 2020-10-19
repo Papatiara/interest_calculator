@@ -61,7 +61,7 @@ const Calculator = () => {
     return (
         <div className="calculator_wrapper">
             <div className="form_total_wrapper">
-                <form id="form" autocomplete="on">
+                <form id="form" autoComplete="on">
                     <span>
                         <label htmlFor="amount">Amount: </label>
                         <input onInput={(e) => setAmount(e.target.value)}

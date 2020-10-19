@@ -48,7 +48,7 @@ test('handling missing data from required fields', () => {
 
 
 
-describe('action clear form test', () => {
+describe('action CLEAR_FORM test', () => {
   it('Should handle clear form action returning 0', async () => {
     const wrapper = mount(
       <Provider store={store}>
@@ -58,7 +58,11 @@ describe('action clear form test', () => {
 
     const testingValue = ({
       type: actionsTypes.CLEAR_FORM,
-      payload: {}
+      payload: {
+        amount: "0",
+        years: "0",
+        interest: "0"
+      }
     });
 
     await store.dispatch(testingValue);
@@ -71,7 +75,7 @@ describe('action clear form test', () => {
 })
 
 
-describe('action total asked test for int amount', () => {
+describe('action TOTAL_ASKED - general test for int value', () => {
   it('It should return the expected value', async () => {
     const wrapper = mount(
       <Provider store={store}>
@@ -99,7 +103,7 @@ describe('action total asked test for int amount', () => {
 })
 
 
-describe('action total asked test for float amount', () => {
+describe('action TOTAL_ASKED - general test for float value', () => {
   it('It should return the expected value, rounding it with 2 digits after fixed point', async () => {
     const wrapper = mount(
       <Provider store={store}>
@@ -125,3 +129,49 @@ describe('action total asked test for float amount', () => {
     expect(store.getState()).toEqual("640.16");
   })
 })
+
+describe('Memory leaking test action TOTAL_ASKED followed by CLEAN_FORM action ', () => {
+  it('It should return the right results without memory leaking', async () => {
+    const wrapper = mount(
+      <Provider store={store}>
+        <Calculator />
+      </Provider>,
+    )
+
+    const testingValue1 = ({
+      type: actionsTypes.TOTAL_ASKED,
+      payload: {
+        amount: "5000",
+        years: "5",
+        interest: "0.025"
+      }
+    });
+
+    const testingValue2 = ({
+      type: actionsTypes.CLEAR_FORM,
+      payload: {
+        amount: 0,
+        years: 0,
+        interest: 0
+      }
+    });
+
+     const testingValue3 = ({
+      type: actionsTypes.TOTAL_ASKED,
+      payload: {
+        amount: "5000",
+        years: "5",
+        interest: "0.025"
+      }
+    });
+
+
+    await store.dispatch(testingValue1) && store.dispatch(testingValue2) && store.dispatch(testingValue3);
+
+
+    wrapper.update();
+
+
+    expect(store.getState()).toEqual("5625.00");
+  });
+});

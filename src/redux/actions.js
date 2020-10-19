@@ -11,5 +11,9 @@ export const submitData = () => ({
 
 export const clearData = () => ({
     type: actions.CLEAR_FORM,
-    payload: {}
+    payload: {
+        amount: 0,
+        years: 0,
+        interest: 0
+    }
 });

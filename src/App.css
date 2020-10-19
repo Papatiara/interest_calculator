@@ -1,9 +1,11 @@
 .App {
-  height: 100%;
   min-height: 100vh;
   min-width: 100vw;
+  position: fixed;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
   text-align: center;
@@ -14,4 +16,5 @@
 
 .App h3 {
   text-transform: uppercase;
+  word-spacing: 10px;
 }
